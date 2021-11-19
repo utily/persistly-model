@@ -69,6 +69,7 @@
 		"watch": "^0.13.0"
 	},
 	"dependencies": {
-		"authly": "^0.2.8"
+		"authly": "^0.2.8",
+		"isoly": "^0.0.36"
 	}
 }
