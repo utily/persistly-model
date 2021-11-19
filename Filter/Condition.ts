@@ -1,4 +1,4 @@
-export type Condition<T> = {
+export interface Condition<T> {
 	$eq?: T
 	$gt?: T
 	$gte?: T

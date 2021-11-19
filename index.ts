@@ -1,8 +1,7 @@
-import { Collection } from "./Collection"
-import { Connection } from "./Connection"
-import { Document } from "./Document"
-import { Filter } from "./Filter"
-import { Options } from "./Options"
-import { Update } from "./Update"
-
-export { Collection, Connection, Document, Filter, Options, Update }
+export { Collection } from "./Collection"
+export { Command } from "./Command"
+export { Connection } from "./Connection"
+export { Document } from "./Document"
+export { Filter } from "./Filter"
+export { Options } from "./Options"
+export { Update } from "./Update"
