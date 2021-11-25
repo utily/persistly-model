@@ -6,6 +6,7 @@ export type Filter<T> = {
 export namespace Filter {
 	export type Condition<T> = FilterCondition<T>
 	export namespace Condition {
+		export const is = FilterCondition.is
 		export const extract = FilterCondition.extract
 	}
 }
