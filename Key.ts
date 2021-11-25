@@ -15,8 +15,10 @@ export interface Key {
 	}[]
 }
 const dateTimeConverter = {
-	forward: value => (isoly.DateTime.is(value) ? isoly.DateTime.parse(value).getTime() : value),
-	backward: value => (typeof value == "number" ? isoly.DateTime.create(new Date(value)) : value),
+	forward: (value: isoly.DateTime): number =>
+		isoly.DateTime.is(value) ? isoly.DateTime.parse(value).getTime() : value,
+	backward: (value: number): isoly.DateTime =>
+		typeof value == "number" ? isoly.DateTime.create(new Date(value)) : value,
 }
 const transformers = [
 	new authly.Property.Renamer({
@@ -37,14 +39,14 @@ const transformers = [
 export namespace Key {
 	export type Verifier = authly.Verifier<Key>
 	export namespace Verifier {
-		export function create(publicKey: string): Verifier {
-			return authly.Verifier.create<Key>(authly.Algorithm.RS256(publicKey)).add(...transformers)
+		export function create(publicKey: string | undefined): Verifier | undefined {
+			return authly.Verifier.create<Key>(authly.Algorithm.RS256(publicKey))?.add(...transformers)
 		}
 	}
 	export type Issuer = authly.Issuer<Key>
 	export namespace Issuer {
-		export function create(issuer: string, publicKey: string, privateKey: string): Issuer {
-			return authly.Issuer.create<Key>(issuer, authly.Algorithm.RS256(publicKey, privateKey)).add(...transformers)
+		export function create(issuer: string, privateKey: string | undefined): Issuer | undefined {
+			return authly.Issuer.create<Key>(issuer, authly.Algorithm.RS256(undefined, privateKey))?.add(...transformers)
 		}
 	}
 }
