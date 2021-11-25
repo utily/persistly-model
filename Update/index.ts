@@ -19,5 +19,9 @@ export namespace Update {
 	export namespace Action {
 		export const is = UpdateAction.is
 		export const extract = UpdateAction.extract
+		export type Operator = UpdateAction.Operator
+		export namespace Operator {
+			export const is = UpdateAction.Operator.is
+		}
 	}
 }
