@@ -17,6 +17,7 @@ export namespace Update {
 	}
 	export type Action<T> = UpdateAction<T>
 	export namespace Action {
+		export const is = UpdateAction.is
 		export const extract = UpdateAction.extract
 	}
 }
