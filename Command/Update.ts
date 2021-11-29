@@ -8,3 +8,9 @@ export interface Update<T extends Document> {
 	request: (Filter<T> & UpdateQuery<T> & Options) | (Filter<T> & UpdateQuery<T> & Options)[]
 	response?: {numner: number, data: T } | T
 }
+
+export namespace Update {
+		export function is(value: any | Update<any>): value is Update<any> {
+			return typeof value == "object" && value.command == "update" && Array.isArray(value.request)
+		}
+}

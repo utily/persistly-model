@@ -6,3 +6,9 @@ export interface List<T extends Document> {
 	request: Filter<T>
 	response?: T[]
 }
+
+export namespace List {
+		export function is(value: any | List<any>): value is List<any> {
+			return typeof value == "object" && value.command == "list"
+		}
+}
