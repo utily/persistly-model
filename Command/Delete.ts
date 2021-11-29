@@ -5,3 +5,8 @@ export interface Delete<T extends Document> {
 	command: "delete"
 	request: Filter<T>
 }
+export namespace Delete {
+		export function is(value: any | Delete<any>): value is Delete<any> {
+			return typeof value == "object" && value.command == "delete" 
+		}
+}
