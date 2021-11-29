@@ -1,4 +1,5 @@
 export { Collection } from "./Collection"
+export { Configuration } from "./Configuration"
 export { Command } from "./Command"
 export { Connection } from "./Connection"
 export { Document } from "./Document"
