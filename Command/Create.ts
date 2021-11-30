@@ -7,7 +7,7 @@ export interface Create<T extends Document> {
 }
 
 export namespace Create {
-		export function is(value: any | Create<any>): value is Create<any> {
-			return typeof value == "object" && value.command == "create" 
-		}
+	export function is(value: any | Create<any>): value is Create<any> {
+		return typeof value == "object" && value.command == "create"
+	}
 }

@@ -1,5 +1,6 @@
 import * as isoly from "isoly"
 import * as authly from "authly"
+import { Configuration } from "./Configuration"
 
 export interface Key {
 	id: string
@@ -7,12 +8,7 @@ export interface Key {
 	expires: isoly.DateTime
 	connection: string
 	cache?: string
-	collections: {
-		name: string
-		shard: string
-		idLength: number
-		cached?: boolean
-	}[]
+	configuration: Configuration
 }
 const dateTimeConverter = {
 	forward: (value: isoly.DateTime): number =>
@@ -37,6 +33,18 @@ const transformers = [
 	authly.Property.Remover.create(["token"]),
 ]
 export namespace Key {
+	export function is(value: any | Key): value is Key {
+		return (
+			typeof value == "object" &&
+			value &&
+			typeof value.id == "string" &&
+			isoly.DateTime.is(value.created) &&
+			isoly.DateTime.is(value.expires) &&
+			typeof value.connection == "string" &&
+			(value.cache == undefined || typeof value.cache == "string") &&
+			Configuration.is(value.configuration)
+		)
+	}
 	export type Verifier = authly.Verifier<Key>
 	export namespace Verifier {
 		export function create(publicKey: string | undefined): Verifier | undefined {
