@@ -5,12 +5,13 @@ import { Update as UpdateQuery } from "../Update"
 
 export interface Update<T extends Document> {
 	command: "update"
+	name: string
 	request: (Filter<T> & UpdateQuery<T> & Options) | (Filter<T> & UpdateQuery<T> & Options)[]
 	response?: number | T | (number | T)[]
 }
 
 export namespace Update {
 	export function is(value: any | Update<any>): value is Update<any> {
-		return typeof value == "object" && value.command == "update" && Array.isArray(value.request)
+		return typeof value == "object" && value.command == "update" &&  typeof value.name == "string" && value.request
 	}
 }
