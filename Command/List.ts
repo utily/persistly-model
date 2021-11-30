@@ -10,6 +10,6 @@ export interface List<T extends Document> {
 
 export namespace List {
 	export function is(value: any | List<any>): value is List<any> {
-		return typeof value == "object" && value.command == "list" && typeof value.name == "string" 
+		return typeof value == "object" && value.command == "list" && typeof value.name == "string"
 	}
 }
