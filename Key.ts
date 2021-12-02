@@ -46,13 +46,15 @@ export namespace Key {
 	export type Verifier = authly.Verifier<Key>
 	export namespace Verifier {
 		export function create(publicKey: string | undefined): Verifier | undefined {
-			return authly.Verifier.create<Key>(authly.Algorithm.RS256(publicKey))?.add(...transformers)
+			const verifier = authly.Verifier.create<Key>(authly.Algorithm.RS256(publicKey))
+			return verifier ? verifier.add(...transformers) : undefined
 		}
 	}
 	export type Issuer = authly.Issuer<Key>
 	export namespace Issuer {
 		export function create(issuer: string, privateKey: string | undefined): Issuer | undefined {
-			return authly.Issuer.create<Key>(issuer, authly.Algorithm.RS256(undefined, privateKey))?.add(...transformers)
+			const signer = authly.Issuer.create<Key>(issuer, authly.Algorithm.RS256(undefined, privateKey))
+			return signer ? signer.add(...transformers) : undefined
 		}
 	}
 }
