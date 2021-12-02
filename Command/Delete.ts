@@ -8,7 +8,9 @@ export interface Delete<T extends Document> {
 	response?: T | T[]
 }
 export namespace Delete {
-	export function is(value: any | Delete<any>): value is Delete<any> {
+	export function is<T extends Document>(
+		value: any | Delete<T extends Document ? T : never>
+	): value is Delete<T extends Document ? T : never> {
 		return typeof value == "object" && value.command == "delete" && typeof value.name == "string" && value.request
 	}
 }

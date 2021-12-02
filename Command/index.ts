@@ -13,18 +13,35 @@ export type Command<T extends Document> =
 	| ListCommand<T>
 
 export namespace Command {
-	export function is(value: any | Command<any>): value is Command<any> {
+	export function is<T>(
+		value: any | Command<T extends Document ? T : never>
+	): value is Command<T extends Document ? T : never> {
 		return (
-			UpdateCommand.is(value) ||
-			CreateCommand.is(value) ||
-			DeleteCommand.is(value) ||
-			GetCommand.is(value) ||
-			ListCommand.is(value)
+			UpdateCommand.is<T extends Document ? T : never>(value) ||
+			CreateCommand.is<T extends Document ? T : never>(value) ||
+			DeleteCommand.is<T extends Document ? T : never>(value) ||
+			GetCommand.is<T extends Document ? T : never>(value) ||
+			ListCommand.is<T extends Document ? T : never>(value)
 		)
 	}
-	export type Update = UpdateCommand<any>
-	export type Create = CreateCommand<any>
-	export type Delete = DeleteCommand<any>
-	export type Get = GetCommand<any>
-	export type List = ListCommand<any>
+	export type Update<T> = UpdateCommand<T extends Document ? T : never>
+	export namespace Update {
+		export const is = UpdateCommand.is
+	}
+	export type Create<T> = CreateCommand<T extends Document ? T : never>
+	export namespace Create {
+		export const is = CreateCommand.is
+	}
+	export type Delete<T> = DeleteCommand<T extends Document ? T : never>
+	export namespace Delete {
+		export const is = DeleteCommand.is
+	}
+	export type Get<T> = GetCommand<T extends Document ? T : never>
+	export namespace Get {
+		export const is = GetCommand.is
+	}
+	export type List<T> = ListCommand<T extends Document ? T : never>
+	export namespace List {
+		export const is = ListCommand.is
+	}
 }

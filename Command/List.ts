@@ -9,7 +9,9 @@ export interface List<T extends Document> {
 }
 
 export namespace List {
-	export function is(value: any | List<any>): value is List<any> {
+	export function is<T extends Document>(
+		value: any | List<T extends Document ? T : never>
+	): value is List<T extends Document ? T : never> {
 		return typeof value == "object" && value.command == "list" && typeof value.name == "string"
 	}
 }
