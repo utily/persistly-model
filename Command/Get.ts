@@ -9,7 +9,9 @@ export interface Get<T extends Document> {
 }
 
 export namespace Get {
-	export function is(value: any | Get<any>): value is Get<any> {
+	export function is<T extends Document>(
+		value: any | Get<T extends Document ? T : never>
+	): value is Get<T extends Document ? T : never> {
 		return typeof value == "object" && value.command == "get" && typeof value.name == "string" && value.request
 	}
 }

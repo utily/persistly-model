@@ -11,7 +11,9 @@ export interface Update<T extends Document> {
 }
 
 export namespace Update {
-	export function is(value: any | Update<any>): value is Update<any> {
+	export function is<T extends Document>(
+		value: any | Update<T extends Document ? T : never>
+	): value is Update<T extends Document ? T : never> {
 		return typeof value == "object" && value.command == "update" && typeof value.name == "string" && value.request
 	}
 }
