@@ -6,7 +6,7 @@ export interface Key {
 	id: string
 	created: isoly.DateTime
 	expires: isoly.DateTime
-	connection: string
+	connection?: string
 	configuration: Configuration
 }
 const dateTimeConverter = {
@@ -39,7 +39,7 @@ export namespace Key {
 			typeof value.id == "string" &&
 			isoly.DateTime.is(value.created) &&
 			isoly.DateTime.is(value.expires) &&
-			typeof value.connection == "string" &&
+			(value.connection == undefined || typeof value.connection == "string") &&
 			Configuration.is(value.configuration)
 		)
 	}

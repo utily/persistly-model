@@ -3,7 +3,7 @@ name: "Publish"
 on:
   push:
     branches:
-      - "master"
+      - "master-0.0"
 jobs:
   bump-version:
     name: "Publish from master"

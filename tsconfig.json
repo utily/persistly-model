@@ -1,8 +1,6 @@
 {
 	"extends": "./tsconfig.test.json",
 	"compilerOptions": {
-		"target": "es2021",
-		"module": "es2020",
 		"declaration": true,
 		"sourceMap": true,
 		"sourceRoot": "../",
