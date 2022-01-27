@@ -1,3 +1,4 @@
+export { Cache } from "./Cache"
 export { Collection } from "./Collection"
 export { Configuration } from "./Configuration"
 export { Command } from "./Command"
