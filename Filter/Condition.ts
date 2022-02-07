@@ -30,8 +30,8 @@ export namespace Condition {
 		if (result) {
 			if ("$eq" in condition)
 				result.$eq = condition.$eq
-			if ("$" in condition)
-				result.$gt = condition.$
+			if ("$gt" in condition)
+				result.$gt = condition.$gt
 			if ("$gte" in condition)
 				result.$gte = condition.$gte
 			if ("$in" in condition)
